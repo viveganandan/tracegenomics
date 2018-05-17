@@ -2,6 +2,7 @@
 
 import sys
 import json
+from copy import deepcopy
 
 def eat(garden):
     """Get max number of carrots bunny eats before falling asleep
@@ -25,7 +26,7 @@ def eat(garden):
                     x, y = i, j
         return x, y
 
-    def get_max_adjacent(n, m, x, y):
+    def get_max_adjacent(n, m, x, y, eaten):
         """Return the adjacent cell's corrdinates with the max number
         of carrots to x, y.  If all adjacent cells have already been eaten,
         then return none
@@ -34,35 +35,44 @@ def eat(garden):
             m: The number of rows in garden
             x: The x point of the cell
             y: The y point of the cell
+            eaten: Garden that shows eaten carrots
         """
         xa, ya = None, None
         max_carrots = 0
         # Go left, right
         for i in -1, 1:
             # Verify that we are not out of bounds before reaching adjacent cell
-            if y + i > -1 and y + i < m and garden[x][y + i] > max_carrots:
-                max_carrots = garden[x][y + i]
+            if y + i > -1 and y + i < m and eaten[x][y + i] > max_carrots:
+                max_carrots = eaten[x][y + i]
                 xa, ya = x, y + i
-        # Go Up, down
+        # Go up, down
         for i in -1, 1:
             # Verify that we are not out of bounds before reaching adjacent cell
-            if x + i > -1 and x + i < n and garden[x + i][y] > max_carrots:
-                max_carrots = garden[x + i][y]
+            if x + i > -1 and x + i < n and eaten[x + i][y] > max_carrots:
+                max_carrots = eaten[x + i][y]
                 xa, ya = x + i, y
         return xa, ya
 
-    if not garden:
-        return 0
+    # Make sure we have a garden
     n = len(garden)
+    if not n:
+        return 0
     m = len(garden[0])
-    carrots = 0
+    if not m:
+        return 0
+
     x, y = get_center(n, m)
+    carrots = 0
+    # copy over garden so we can update it with carrots eaten by bunny rather than mess with original garden
+    eaten = deepcopy(garden)
+    # starting at center, find next max adjacent with max number of carrots and continue until bunny has nothing to eat
     while x != None and y != None:
-        # If number of carrots is negative, dont' count it
-        if garden[x][y] > -1:
-            carrots += garden[x][y]
-        garden[x][y] = 0
-        x, y = get_max_adjacent(n, m, x, y)
+        # If number of carrots is less than 1, no point in counting it
+        if eaten[x][y] > 0:
+            carrots += eaten[x][y]
+        # empty out cell since bunny has already eaten
+        eaten[x][y] = 0
+        x, y = get_max_adjacent(n, m, x, y, eaten)
     return carrots
 
 def main():
@@ -74,6 +84,7 @@ def main():
         garden = json.loads(sys.argv[-1])
     except ValueError, e:
         print 'Garden is not a valid nxm matrix', str(e)
+        sys.exit(1)
 
     print 'Number of carrots of eaten by bunny before falling asleep = %s' % (eat(garden))
 
