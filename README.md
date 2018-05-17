@@ -23,8 +23,14 @@ The carrots.py can be called directly with the garden as a command line argument
 
 ### Examples -
 
-`python carrots.py '[[-1, -1, -1], [-2, -1, 2]]'`
+`./carrots.py '[[-1, -1, -1], [-2, -1, 2]]'`
 
-`python carrots.py '[[5, 7, 8, 6, 3],[0, 0, 7, 0, 4],[4, 6, 3, 4, 9],[3, 1, 0, 5, 8]]'`
+`./carrots.py '[[5, 7, 8, 6, 3],[0, 0, 7, 0, 4],[4, 6, 3, 4, 9],[3, 1, 0, 5, 8]]'`
 
-`python carrots.py '[[7, 6, 3], [-1, 8, 10]]'`
+`./carrots.py '[[7, 6, 3], [-1, 8, 10]]'`
+
+`/carrots.py '[[5, 3, 2, 1, 1], [7, 9, 0, 11, 2], [3, 4, 5, 6, 3], [8, 10, 4, 10, 9]]'`
+
+`./carrots.py '[]'`
+
+`./carrots.py '[[]]'`
