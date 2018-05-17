@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import sys
 import json
 
@@ -56,7 +58,7 @@ def eat(garden):
     carrots = 0
     x, y = get_center(n, m)
     while x != None and y != None:
-        # If number of carrots is negative, don't count it
+        # If number of carrots is negative, dont' count it
         if garden[x][y] > -1:
             carrots += garden[x][y]
         garden[x][y] = 0
