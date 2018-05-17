@@ -29,7 +29,7 @@ The carrots.py can be called directly with the garden as a command line argument
 
 `./carrots.py '[[7, 6, 3], [-1, 8, 10]]'`
 
-`/carrots.py '[[5, 3, 2, 1, 1], [7, 9, 0, 11, 2], [3, 4, 5, 6, 3], [8, 10, 4, 10, 9]]'`
+`./carrots.py '[[5, 3, 2, 1, 1], [7, 9, 0, 11, 2], [3, 4, 5, 6, 3], [8, 10, 4, 10, 9]]'`
 
 `./carrots.py '[]'`
 
