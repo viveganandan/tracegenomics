@@ -1,4 +1,4 @@
-QUESTION
+# QUESTION
 Prompt: Write a function that takes the input, gives the output, and meets the conditions below.
 
 Input: An N x M matrix of a garden. Each cell contains an integer representing the number of carrots in that part of the garden.
@@ -16,3 +16,15 @@ garden1 = [[5, 7, 8, 6, 3],
 
 eat(garden1)
 27 # starts at garden[1][2] = 7, eats 7 carrots, looks at the 8, 0, 3, and 0 adjacent, moves to the 8, repeat.
+
+# Solution
+
+The carrots.py can be called directly with the garden as a command line argument or def "eat" can be imported from carrots.py.
+
+### Examples -
+
+`python carrots.py '[[-1, -1, -1], [-2, -1, 2]]'`
+
+`python carrots.py '[[5, 7, 8, 6, 3],[0, 0, 7, 0, 4],[4, 6, 3, 4, 9],[3, 1, 0, 5, 8]]'`
+
+`python carrots.py '[[7, 6, 3], [-1, 8, 10]]'`
